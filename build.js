@@ -6,6 +6,7 @@ const buildDir = path.join(__dirname, 'build')
 if (!fs.existsSync(buildDir)) {
   fs.mkdirSync(buildDir, { recursive: true })
 }
+fs.chmodSync(path.join(__dirname, 'deps', 'breakpad', 'configure'), 0o755);
 spawnSync(path.join(__dirname, 'deps', 'breakpad', 'configure'), [], {
   cwd: buildDir,
   env: {
