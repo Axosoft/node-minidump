@@ -22,3 +22,10 @@ if (process.platform === 'linux') {
 spawnSync('make', ['-C', buildDir, '-j', require('os').cpus().length, ...targets], {
   stdio: 'inherit'
 })
+
+if (process.platform === 'darwin') {
+  spawnSync('xcodebuild', [`SYMROOT=${buildDir}/src/tools/mac/dump_syms`], {
+    cwd: `${__dirname}/deps/breakpad/src/tools/mac/dump_syms`,
+    stdio: 'inherit'
+  })
+}
